@@ -24,6 +24,7 @@ import Axios from 'axios';
 
 import ImageTextWrapper from './ImageTextWrapper';
 import Surface from './Surface';
+import About from './About';
 
 class App extends Component {
   constructor(props) {
@@ -46,7 +47,8 @@ class App extends Component {
       surfaceid: "",
       targetLabel: "",
       itemsPerPage: 5,
-      institutions: []
+      institutions: [],
+      aboutView: false
 
     }
   }
@@ -195,6 +197,13 @@ class App extends Component {
             });
 
   }
+  handleToggleAbout(){
+    this.setState((prevState) => {
+      return {
+        aboutView: !prevState.aboutView
+      }
+    })
+  }
   render() {
     const getImageTextWrappers = () => {
       const codexWrapper = this.state.data.map((codex, i) => {
@@ -318,8 +327,10 @@ class App extends Component {
 
             <Button onClick={this.handleSubmit} type="submit"><Icon color="secondary">send</Icon></Button>
           </form>
+          <Button onClick={() => {this.handleToggleAbout()}}>{this.state.aboutView ? <span>Hide About</span> : <span>About</span>}</Button>
           </Toolbar>
         </AppBar>
+        { this.state.aboutView ? <About/> :
 
         <div className="wrapper">
           <div className="searchResults">
@@ -330,6 +341,7 @@ class App extends Component {
             {this.state.surfaceid && <Surface key={this.state.surfaceid} surfaceid={this.state.surfaceid} targetLabel={this.state.targetLabel}/>}
           </div>
         </div>
+      }
         <AppBar position="sticky" color="primary">
         <Toolbar id="footer-toolbar">
           <Link href="http://lombardpress.org" block={false} color="secondary">

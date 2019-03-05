@@ -88,6 +88,7 @@ padding-left: 20px;
 
 #footer-toolbar{
   justify-content: space-around;
+  height: 8vh
 
 }
 #input-form{
@@ -95,4 +96,14 @@ padding-left: 20px;
 }
 #queryString, #queryCodex, #queryInstitution{
   margin-left: 20px !important
+}
+#about{
+height:92vh;
+margin-top: 100px;
+width: 60%;
+margin: auto;
+margin-top: 100px
+}
+.youtuble{
+  width: 60%;
 }
