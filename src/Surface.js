@@ -15,7 +15,6 @@ class Surface extends Component {
     const url = "http://localhost:8080/exist/apps/scta-app/folio-annotaiton-list-from-simpleXmlCoordinates.xq?surfaceid=" + shortSurfaceId
     Axios.get(url)
       .then(({ data })=> {
-        console.log("data", data)
         this.setState({
           data: data.resources,
         });
@@ -52,6 +51,7 @@ class Surface extends Component {
     }
     return (
       <div className="surface">
+            <p>{this.props.surfaceid}</p>
 
             {getImageTextWrappers()}
 

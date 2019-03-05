@@ -12,9 +12,7 @@ class ImageTextWrapper extends Component {
   }
   render() {
     const getClass = () => {
-      console.log(this.props.targetLabel, "::", this.props.label)
       if (this.props.targetLabel === this.props.label){
-        console.log("match", this.props.label)
         return "target"
       }
     }

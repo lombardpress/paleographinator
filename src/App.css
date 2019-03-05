@@ -1,6 +1,8 @@
 
-
-
+body{margin: 0; padding: 0}
+.App{
+  height:100vh;
+}
 .text {
       text-align: justify;
 
@@ -21,7 +23,7 @@
       display: none;
       position: absolute;
       left: 0px;
-      top: -15px;
+      top: -50px;
       width: 800px;
       font-size: 20px;
       text-align: center;
@@ -41,11 +43,13 @@
     .wrapper{
       display: flex;
       justify-content: space-around;
+      height:92vh;
+
     }
 
     .searchResults{
+      margin-top: 0px;
       width: 800px;
-      height: 100%;
       overflow: scroll;
     }
     .searchResults .text{
@@ -53,8 +57,7 @@
     }
     .surfaceResults{
       width: 500px;
-      height: 800px;
-      margin-top: 80px;
+      margin-top: 68px;
       overflow: scroll;
     }
     .surfaceResults .text{
@@ -75,14 +78,21 @@
 padding-left: 20px;
 }
 
-#queryString{
-  width: 250px;
-  padding-left: 10px;
-  padding-right: 10px;
-}
+
 .paggerWrapper{
   margin: auto;
   margin-top: 80px;
   width: 800px;
   text-align: center
+}
+
+#footer-toolbar{
+  justify-content: space-around;
+
+}
+#input-form{
+  padding-left: 50px !important;
+}
+#queryString, #queryCodex, #queryInstitution{
+  margin-left: 20px !important
 }
