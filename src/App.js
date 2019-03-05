@@ -85,11 +85,8 @@ class App extends Component {
   }
 
   updateSearch(url, codex){
-    console.log("next url", url)
     Axios.get(url)
       .then(({ data })=> {
-        console.log("data from next url", data)
-
         const newData = packageData(data, this.state.itemsPerPage)
 
           this.setState((prevState) => {
@@ -101,7 +98,6 @@ class App extends Component {
                 return d
               }
             })
-            console.log("codex", codex, "newDataArray", newDataArray)
             return{
               data: newDataArray
             }
@@ -115,11 +111,11 @@ class App extends Component {
   handleSubmit(e){
     e.preventDefault()
     let parameters = "?page=1&q=" + this.state.searchText
-    console.log("params1", parameters)
     if (this.state.searchInstitution){ parameters = parameters + "&institution=" + this.state.searchInstitution}
     if (this.state.searchCodex) { parameters = parameters + "&codex=" + this.state.searchCodex}
-    console.log("params2", parameters)
-    this.triggerSearch("http://localhost:8080/exist/apps/scta-app/iiifsearch-with-paging-line-level-from-simpleXmlCoordinates2.xq" + parameters);
+    // const searchUrl = "http://localhost:8080/exist/apps/scta-app/iiifsearch-with-paging-line-level-from-simpleXmlCoordinates2.xq"
+    const searchUrl = "https://exist.scta.info/exist/apps/scta-app/iiifsearch-with-paging-line-level-from-simpleXmlCoordinates2.xq"
+    this.triggerSearch(searchUrl + parameters);
     // if (this.state.searchCodex)
     //   {this.triggerSearch("http://localhost:8080/exist/apps/scta-app/iiifsearch-with-paging-line-level-from-simpleXmlCoordinates.xq?page=1&q=" + this.state.searchText + "&codex=" + this.state.searchCodex);
     // }
@@ -192,7 +188,6 @@ class App extends Component {
                   codexTitle: c.codexTitle.value
                 }
               });
-              console.log("codices", codices)
               _this.setState({codices: codices})
             })
             .catch((err)=> {
@@ -249,18 +244,26 @@ class App extends Component {
 
     }
     const getInstitutionMenuItems = () => {
+      //temp include list to exclude scta codices without corresponding coords data.
+      const includeList = ["I-i9ujd3", "I-pdn3as"]
       if (this.state.institutions){
         const institutions = this.state.institutions.map((i) => {
-          return <MenuItem value={i.institutionShortId}>{i.institutionTitle}</MenuItem>
+          if (includeList.includes(i.institutionShortId)){
+            return <MenuItem key={i.codexShortId} value={i.institutionShortId}>{i.institutionTitle}</MenuItem>
+          }
         })
         return institutions
       }
 
     }
     const getCodexMenuItems = () => {
+      //temp include list to exclude scta codices without corresponding coords data.
+      const includeList = ["penn", "svict", "lon", "reims", "cod-yu78uh", "cod-xowk10", "penn855"]
       if (this.state.codices){
         const codices = this.state.codices.map((c) => {
-          return <MenuItem value={c.codexShortId}>{c.codexTitle}</MenuItem>
+          if (includeList.includes(c.codexShortId)){
+            return <MenuItem key={c.codexShortId} value={c.codexShortId}>{c.codexTitle}</MenuItem>
+          }
         })
         return codices
       }
@@ -270,7 +273,7 @@ class App extends Component {
       <div className="App">
         <AppBar position="fixed" color="primary">
 
-          <Toolbar block={false}>
+          <Toolbar>
           <Typography variant="h6" color="inherit">
             Paleographinator
           </Typography>
@@ -291,7 +294,7 @@ class App extends Component {
                     id: 'codex',
                   }}
                   >
-                <MenuItem value="">Select</MenuItem>
+                <MenuItem key="blankCodex" value="">Select</MenuItem>
                 {getCodexMenuItems()}
 
 
@@ -306,7 +309,7 @@ class App extends Component {
                   id: 'institution',
                 }}
                 >
-                <MenuItem value="">Select</MenuItem>
+                <MenuItem key="blankInstitutions" value="">Select</MenuItem>
               {getInstitutionMenuItems()}
 
               </Select>

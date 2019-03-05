@@ -12,7 +12,8 @@ class Surface extends Component {
   }
   componentDidMount(){
     const shortSurfaceId = this.props.surfaceid.split("/resource/")[1]
-    const url = "http://localhost:8080/exist/apps/scta-app/folio-annotaiton-list-from-simpleXmlCoordinates.xq?surfaceid=" + shortSurfaceId
+    const url = "https://exist.scta.info/exist/apps/scta-app/folio-annotaiton-list-from-simpleXmlCoordinates.xq?surfaceid=" + shortSurfaceId
+    // const url = "http://localhost:8080/exist/apps/scta-app/folio-annotaiton-list-from-simpleXmlCoordinates.xq?surfaceid=" + shortSurfaceId
     Axios.get(url)
       .then(({ data })=> {
         this.setState({
