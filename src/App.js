@@ -32,6 +32,7 @@ class App extends Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleChangeCodex = this.handleChangeCodex.bind(this)
     this.handleChangeInstitution = this.handleChangeInstitution.bind(this)
+    this.handleChangeAfterDate = this.handleChangeAfterDate.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleNext = this.handleNext.bind(this)
     this.handlePrevious = this.handlePrevious.bind(this)
@@ -48,7 +49,8 @@ class App extends Component {
       targetLabel: "",
       itemsPerPage: 5,
       institutions: [],
-      aboutView: false
+      aboutView: false,
+      afterDate: ""
 
     }
   }
@@ -59,11 +61,15 @@ class App extends Component {
   };
   handleChangeCodex(event) {
     const searchCodex = event.target.value
-    this.setState({searchCodex: searchCodex});
+    this.setState({searchCodex: searchCodex, searchInstitution: "", afterDate: ""});
   };
   handleChangeInstitution(event) {
     const searchInstitution = event.target.value
-    this.setState({searchInstitution: searchInstitution});
+    this.setState({searchInstitution: searchInstitution, searchCodex: "", afterDate: ""});
+  };
+  handleChangeAfterDate(event) {
+    const afterDate = event.target.value
+    this.setState({afterDate: afterDate, searchInstitution: "", searchCodex: ""});
   };
   triggerSearch(url){
     Axios.get(url)
@@ -115,7 +121,8 @@ class App extends Component {
     let parameters = "?page=1&q=" + this.state.searchText
     if (this.state.searchInstitution){ parameters = parameters + "&institution=" + this.state.searchInstitution}
     if (this.state.searchCodex) { parameters = parameters + "&codex=" + this.state.searchCodex}
-    // const searchUrl = "http://localhost:8080/exist/apps/scta-app/iiifsearch-with-paging-line-level-from-simpleXmlCoordinates2.xq"
+    if (this.state.afterDate) { parameters = parameters + "&afterDate=" + this.state.afterDate}
+     // const searchUrl = "http://localhost:8080/exist/apps/scta-app/iiifsearch-with-paging-line-level-from-simpleXmlCoordinates2.xq"
     const searchUrl = "https://exist.scta.info/exist/apps/scta-app/iiifsearch-with-paging-line-level-from-simpleXmlCoordinates2.xq"
     this.triggerSearch(searchUrl + parameters);
     // if (this.state.searchCodex)
@@ -292,6 +299,8 @@ class App extends Component {
               <InputLabel htmlFor="queryString">Search Term</InputLabel>
 
               <TextField id="queryString"  onChange={this.handleChange} value={this.state.searchText} placeholder="search for word here"></TextField>
+              <InputLabel htmlFor="queryAfterDate">After Date</InputLabel>
+              <TextField id="queryAfterDate"  onChange={this.handleChangeAfterDate} value={this.state.afterDate} placeholder="1500"></TextField>
 
               <InputLabel htmlFor="codices">Codices</InputLabel>
                 <Select
