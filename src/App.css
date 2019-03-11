@@ -53,6 +53,7 @@ body{margin: 0; padding: 0}
       width: 800px;
       overflow: scroll;
       margin: auto;
+      padding-bottom: 50vh;
     }
     .searchResults .text{
       width: 800px
@@ -69,7 +70,8 @@ body{margin: 0; padding: 0}
       height: 50vh;
       background-color: #979dbb;
       box-shadow: 0 0 8px 2px rgba(1, 1, 1, 0.6);
-
+      -webkit-transition: width 2s; /* Safari */
+      transition: width 2s;
     }
     .surfaceResultsDisplay{
       display: block
