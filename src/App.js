@@ -40,6 +40,7 @@ class App extends Component {
     this.handleLast = this.handleLast.bind(this)
     this.triggerSearch = this.triggerSearch.bind(this)
     this.handleShowSurface = this.handleShowSurface.bind(this)
+    this.handleHideSurface = this.handleHideSurface.bind(this)
     this.state = {
       searchText: "",
       searchCodex: "",
@@ -153,6 +154,9 @@ class App extends Component {
   }
   handleShowSurface(surfaceid, label){
     this.setState({surfaceid: surfaceid, targetLabel: label});
+  }
+  handleHideSurface(surfaceid, label){
+    this.setState({surfaceid: "", targetLabel: ""});
   }
   componentWillMount(){
     const _this = this;
@@ -343,12 +347,13 @@ class App extends Component {
 
         <div className="wrapper">
           <div className="searchResults">
-
             {getImageTextWrappers()}
           </div>
+          {this.state.surfaceid &&
           <div className="surfaceResults">
-            {this.state.surfaceid && <Surface key={this.state.surfaceid} surfaceid={this.state.surfaceid} targetLabel={this.state.targetLabel}/>}
-          </div>
+             <Button id="hide-surface" onClick={this.handleHideSurface}>Hide</Button>
+             <Surface key={this.state.surfaceid} surfaceid={this.state.surfaceid} targetLabel={this.state.targetLabel}/>
+          </div>}
         </div>
       }
         <AppBar position="sticky" color="primary">
