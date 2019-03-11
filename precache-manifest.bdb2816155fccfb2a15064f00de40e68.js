@@ -4,8 +4,8 @@ self.__precacheManifest = [
     "url": "/paleographinator/static/media/roboto-latin-300.a1471d1d.woff"
   },
   {
-    "revision": "613a1d87ac3c4acfed11",
-    "url": "/paleographinator/static/css/main.11985493.chunk.css"
+    "revision": "defa7fe591101982f97a",
+    "url": "/paleographinator/static/css/main.d26a4bb7.chunk.css"
   },
   {
     "revision": "eacee50a5010e428cbab",
@@ -60,8 +60,8 @@ self.__precacheManifest = [
     "url": "/paleographinator/static/media/roboto-latin-100italic.d704bb3d.woff"
   },
   {
-    "revision": "613a1d87ac3c4acfed11",
-    "url": "/paleographinator/static/js/main.613a1d87.chunk.js"
+    "revision": "defa7fe591101982f97a",
+    "url": "/paleographinator/static/js/main.defa7fe5.chunk.js"
   },
   {
     "revision": "d69924b98acd849cdeba9fbff3f88ea6",
@@ -84,28 +84,28 @@ self.__precacheManifest = [
     "url": "/paleographinator/static/media/roboto-latin-400italic.9680d5a0.woff"
   },
   {
-    "revision": "de8b7431b74642e830af4d4f4b513ec9",
-    "url": "/paleographinator/static/media/roboto-latin-500.de8b7431.woff"
-  },
-  {
     "revision": "510dec37fa69fba39593e01a469ee018",
     "url": "/paleographinator/static/media/roboto-latin-500italic.510dec37.woff2"
+  },
+  {
+    "revision": "de8b7431b74642e830af4d4f4b513ec9",
+    "url": "/paleographinator/static/media/roboto-latin-500.de8b7431.woff"
   },
   {
     "revision": "ffcc050b2d92d4b14a4fcb527ee0bcc8",
     "url": "/paleographinator/static/media/roboto-latin-500italic.ffcc050b.woff"
   },
   {
-    "revision": "cf6613d1adf490972c557a8e318e0868",
-    "url": "/paleographinator/static/media/roboto-latin-700.cf6613d1.woff"
+    "revision": "846d1890aee87fde5d8ced8eba360c3a",
+    "url": "/paleographinator/static/media/roboto-latin-700italic.846d1890.woff"
   },
   {
     "revision": "010c1aeee3c6d1cbb1d5761d80353823",
     "url": "/paleographinator/static/media/roboto-latin-700italic.010c1aee.woff2"
   },
   {
-    "revision": "846d1890aee87fde5d8ced8eba360c3a",
-    "url": "/paleographinator/static/media/roboto-latin-700italic.846d1890.woff"
+    "revision": "cf6613d1adf490972c557a8e318e0868",
+    "url": "/paleographinator/static/media/roboto-latin-700.cf6613d1.woff"
   },
   {
     "revision": "bc833e725c137257c2c42a789845d82f",
@@ -120,7 +120,7 @@ self.__precacheManifest = [
     "url": "/paleographinator/static/css/2.d5cac5df.chunk.css"
   },
   {
-    "revision": "e44de1994c7e26c18bb9602c8c4381fc",
+    "revision": "3a9ad191e5c96b6b06b67d4215c0b93b",
     "url": "/paleographinator/index.html"
   }
 ];

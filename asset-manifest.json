@@ -1,17 +1,17 @@
 {
-  "main.css": "/paleographinator/static/css/main.11985493.chunk.css",
-  "main.js": "/paleographinator/static/js/main.613a1d87.chunk.js",
-  "main.js.map": "/paleographinator/static/js/main.613a1d87.chunk.js.map",
+  "main.css": "/paleographinator/static/css/main.d26a4bb7.chunk.css",
+  "main.js": "/paleographinator/static/js/main.defa7fe5.chunk.js",
+  "main.js.map": "/paleographinator/static/js/main.defa7fe5.chunk.js.map",
   "runtime~main.js": "/paleographinator/static/js/runtime~main.eacee50a.js",
   "runtime~main.js.map": "/paleographinator/static/js/runtime~main.eacee50a.js.map",
   "static/css/2.d5cac5df.chunk.css": "/paleographinator/static/css/2.d5cac5df.chunk.css",
   "static/js/2.5ca50673.chunk.js": "/paleographinator/static/js/2.5ca50673.chunk.js",
   "static/js/2.5ca50673.chunk.js.map": "/paleographinator/static/js/2.5ca50673.chunk.js.map",
   "index.html": "/paleographinator/index.html",
-  "precache-manifest.ecb54e7bd7236ae127acb56ae3a617e0.js": "/paleographinator/precache-manifest.ecb54e7bd7236ae127acb56ae3a617e0.js",
+  "precache-manifest.bdb2816155fccfb2a15064f00de40e68.js": "/paleographinator/precache-manifest.bdb2816155fccfb2a15064f00de40e68.js",
   "service-worker.js": "/paleographinator/service-worker.js",
   "static/css/2.d5cac5df.chunk.css.map": "/paleographinator/static/css/2.d5cac5df.chunk.css.map",
-  "static/css/main.11985493.chunk.css.map": "/paleographinator/static/css/main.11985493.chunk.css.map",
+  "static/css/main.d26a4bb7.chunk.css.map": "/paleographinator/static/css/main.d26a4bb7.chunk.css.map",
   "static/media/logo.svg": "/paleographinator/static/media/logo.5d5d9eef.svg",
   "static/media/index.css": "/paleographinator/static/media/roboto-latin-900italic.bc833e72.woff"
 }
