@@ -278,7 +278,7 @@ class App extends Component {
     }
     const getCodexMenuItems = () => {
       //temp include list to exclude scta codices without corresponding coords data.
-      const includeList = ["penn", "svict", "lon", "reims", "cod-yu78uh", "cod-xowk10", "penn855", "Lyon1518"]
+      const includeList = ["penn", "svict", "lon", "reims", "cod-yu78uh", "cod-xowk10", "penn855", "Lyon1518", "vatlat955", "tara", "vat"]
       if (this.state.codices){
         const codices = this.state.codices.map((c) => {
           if (includeList.includes(c.codexShortId)){
