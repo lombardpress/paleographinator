@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Qs from "query-string"
+
 import logo from './logo.svg';
 import './App.css';
 import 'typeface-roboto'
@@ -29,6 +31,7 @@ import About from './About';
 class App extends Component {
   constructor(props) {
     super(props);
+    this.retrieveInfo = this.retrieveInfo.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleChangeCodex = this.handleChangeCodex.bind(this)
     this.handleChangeInstitution = this.handleChangeInstitution.bind(this)
@@ -44,6 +47,8 @@ class App extends Component {
     this.state = {
       searchText: "",
       searchCodex: "",
+      searchLine: "",
+      searchSurface: "",
       searchInstitution: "",
       data: [],
       surfaceid: "",
@@ -116,13 +121,17 @@ class App extends Component {
           console.log(err)
         });
       }
-
   handleSubmit(e){
     e.preventDefault()
+    this.retrieveInfo()
+  }
+  retrieveInfo(){
     let parameters = "?page=1&q=" + this.state.searchText
     if (this.state.searchInstitution){ parameters = parameters + "&institution=" + this.state.searchInstitution}
     if (this.state.searchCodex) { parameters = parameters + "&codex=" + this.state.searchCodex}
     if (this.state.afterDate) { parameters = parameters + "&afterDate=" + this.state.afterDate}
+    if (this.state.searchSurface) { parameters = parameters + "&searchSurface=" + this.state.searchSurface}
+    if (this.state.searchLine) { parameters = parameters + "&searchLine=" + this.state.searchLine}
      // const searchUrl = "http://localhost:8080/exist/apps/scta-app/iiifsearch-with-paging-line-level-from-simpleXmlCoordinates2.xq"
     const searchUrl = "https://exist.scta.info/exist/apps/scta-app/iiifsearch-with-paging-line-level-from-simpleXmlCoordinates2.xq"
     this.triggerSearch(searchUrl + parameters);
@@ -159,53 +168,70 @@ class App extends Component {
     this.setState({surfaceid: "", targetLabel: ""});
   }
   componentWillMount(){
-    const _this = this;
-    const sparqlEndpoint = "https://sparql-docker.scta.info/ds/query"
-    const query = [
-        "SELECT DISTINCT ?institution ?institutionTitle  ",
-        "WHERE { ",
-        "?institution a <http://scta.info/resource/institution> .",
-        "?institution <http://purl.org/dc/elements/1.1/title> ?institutionTitle .",
-        "}",
-        "ORDER BY ?institutionTitle"
-      ].join('');
+    if (this.props.location.search){
+      this.setState((prevState) => {
+        return {
+          searchText: Qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).searchText,
+          searchCodex: Qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).searchCodex,
+          searchSurface: Qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).searchSurface,
+          searchLine: Qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).searchLine,
+          searchInstitution: Qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).searchInstitution
+        }
+      }, () => {
+        this.retrieveInfo()
+      }
+    )
+    }
 
-      Axios.get(sparqlEndpoint, {params: {"query" : query, "output": "json"}})
-        .then(function(res){
-          const institutions = res.data.results.bindings.map((i) => {
-            return {
-              institutionShortId: i.institution.value.split("/resource/")[1],
-              institutionTitle: i.institutionTitle.value
-            }
-          });
-          _this.setState({institutions: institutions})
-        })
-        .catch((err)=> {
-          console.log(err)
-        });
+    // after setting state perform query
+      const _this = this;
+      const sparqlEndpoint = "https://sparql-docker.scta.info/ds/query"
+      const query = [
+          "SELECT DISTINCT ?institution ?institutionTitle  ",
+          "WHERE { ",
+          "?institution a <http://scta.info/resource/institution> .",
+          "?institution <http://purl.org/dc/elements/1.1/title> ?institutionTitle .",
+          "}",
+          "ORDER BY ?institutionTitle"
+        ].join('');
 
-        const codexQuery = [
-            "SELECT DISTINCT ?codex ?codexTitle  ",
-            "WHERE { ",
-            "?codex a <http://scta.info/resource/codex> .",
-            "?codex <http://purl.org/dc/elements/1.1/title> ?codexTitle .",
-            "}",
-            "ORDER BY ?codexTitle"
-          ].join('');
-
-          Axios.get(sparqlEndpoint, {params: {"query" : codexQuery, "output": "json"}})
-            .then(function(res){
-              const codices = res.data.results.bindings.map((c) => {
-                return {
-                  codexShortId: c.codex.value.split("/resource/")[1],
-                  codexTitle: c.codexTitle.value
-                }
-              });
-              _this.setState({codices: codices})
-            })
-            .catch((err)=> {
-              console.log(err)
+        Axios.get(sparqlEndpoint, {params: {"query" : query, "output": "json"}})
+          .then(function(res){
+            const institutions = res.data.results.bindings.map((i) => {
+              return {
+                institutionShortId: i.institution.value.split("/resource/")[1],
+                institutionTitle: i.institutionTitle.value
+              }
             });
+            _this.setState({institutions: institutions})
+          })
+          .catch((err)=> {
+            console.log(err)
+          });
+
+          const codexQuery = [
+              "SELECT DISTINCT ?codex ?codexTitle  ",
+              "WHERE { ",
+              "?codex a <http://scta.info/resource/codex> .",
+              "?codex <http://purl.org/dc/elements/1.1/title> ?codexTitle .",
+              "}",
+              "ORDER BY ?codexTitle"
+            ].join('');
+
+            Axios.get(sparqlEndpoint, {params: {"query" : codexQuery, "output": "json"}})
+              .then(function(res){
+                const codices = res.data.results.bindings.map((c) => {
+                  return {
+                    codexShortId: c.codex.value.split("/resource/")[1],
+                    codexTitle: c.codexTitle.value
+                  }
+                });
+                _this.setState({codices: codices})
+              })
+              .catch((err)=> {
+                console.log(err)
+              });
+
 
   }
   handleToggleAbout(){
@@ -225,6 +251,7 @@ class App extends Component {
           const coords = h.on.split("#xywh=")[1];
           const imageUrl = h.imageUrl
           const label = h.label
+          const lineNumberFromLabel = label.split("line: ")[1]
           const surfaceid = h.surfaceId
           return (
             <ImageTextWrapper key={i}
@@ -238,6 +265,7 @@ class App extends Component {
               handleShowSurface={this.handleShowSurface}
               surfaceButton={true}
               displayWidth="800"
+              lineNumber={lineNumberFromLabel}
               />
           )
         });
@@ -290,7 +318,9 @@ class App extends Component {
 
     }
     return (
+
       <div className="App">
+
         <AppBar position="fixed" color="primary">
 
           <Toolbar>
@@ -370,6 +400,7 @@ class App extends Component {
           </Toolbar>
         </AppBar>
       </div>
+
     );
   }
 }

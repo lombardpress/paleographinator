@@ -61,6 +61,7 @@ body{margin: 0; padding: 0}
     .surface{
       width: 800px;
       margin: auto;
+      margin-top: 40px
     }
     .surfaceResults{
       width: 100%;
@@ -78,7 +79,7 @@ body{margin: 0; padding: 0}
     }
     .surfaceResults .text{
       width: 800px;
-      font-size: 10px;
+      font-size: 16px;
     }
     .surfaceResults .label{
       width: 800px;

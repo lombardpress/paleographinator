@@ -19,7 +19,7 @@ class ImageTextWrapper extends Component {
     return (
       <div className="ImageTextWrapper" className={getClass()}>
         <div className="labelImageWrapper">
-        <Label label={this.props.label} handleShowSurface={this.props.handleShowSurface} surfaceid={this.props.surfaceid} surfaceButton={this.props.surfaceButton}/>
+        <Label label={this.props.label} handleShowSurface={this.props.handleShowSurface} surfaceid={this.props.surfaceid} surfaceButton={this.props.surfaceButton} lineNumber={this.props.lineNumber}/>
         <Image
           imageUrl={this.props.imageUrl}
           canvas={this.props.canvas}
@@ -29,6 +29,7 @@ class ImageTextWrapper extends Component {
           />
         </div>
         <Text text={this.props.text}/>
+        
       </div>
     );
   }
