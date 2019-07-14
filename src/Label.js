@@ -10,7 +10,7 @@ class Image extends Component {
     }
   }
   handleShareLink(e){
-    window.location.assign("/#/surface?lineid=" + this.props.surfaceid + "/" + this.props.lineNumber)
+    window.location.assign("#/surface?lineid=" + this.props.surfaceid + "/" + this.props.lineNumber)
   }
   render() {
     return (
