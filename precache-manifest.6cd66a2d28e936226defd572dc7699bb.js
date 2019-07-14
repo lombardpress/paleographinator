@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/paleographinator/static/media/roboto-latin-300.a1471d1d.woff"
   },
   {
-    "revision": "7343acc8c5dd7d736855",
+    "revision": "85af8567434abc795850",
     "url": "/paleographinator/static/css/main.0ff9d23b.chunk.css"
   },
   {
@@ -60,52 +60,52 @@ self.__precacheManifest = [
     "url": "/paleographinator/static/media/roboto-latin-100italic.d704bb3d.woff"
   },
   {
-    "revision": "7343acc8c5dd7d736855",
-    "url": "/paleographinator/static/js/main.7343acc8.chunk.js"
-  },
-  {
-    "revision": "210a7c781f5a354a0e4985656ab456d9",
-    "url": "/paleographinator/static/media/roboto-latin-300italic.210a7c78.woff"
+    "revision": "85af8567434abc795850",
+    "url": "/paleographinator/static/js/main.85af8567.chunk.js"
   },
   {
     "revision": "d69924b98acd849cdeba9fbff3f88ea6",
     "url": "/paleographinator/static/media/roboto-latin-300italic.d69924b9.woff2"
   },
   {
-    "revision": "d8bcbe724fd6f4ba44d0ee6a2675890f",
-    "url": "/paleographinator/static/media/roboto-latin-400italic.d8bcbe72.woff2"
-  },
-  {
-    "revision": "9680d5a0c32d2fd084e07bbc4c8b2923",
-    "url": "/paleographinator/static/media/roboto-latin-400italic.9680d5a0.woff"
+    "revision": "210a7c781f5a354a0e4985656ab456d9",
+    "url": "/paleographinator/static/media/roboto-latin-300italic.210a7c78.woff"
   },
   {
     "revision": "bafb105baeb22d965c70fe52ba6b49d9",
     "url": "/paleographinator/static/media/roboto-latin-400.bafb105b.woff"
   },
   {
-    "revision": "de8b7431b74642e830af4d4f4b513ec9",
-    "url": "/paleographinator/static/media/roboto-latin-500.de8b7431.woff"
+    "revision": "9680d5a0c32d2fd084e07bbc4c8b2923",
+    "url": "/paleographinator/static/media/roboto-latin-400italic.9680d5a0.woff"
   },
   {
-    "revision": "ffcc050b2d92d4b14a4fcb527ee0bcc8",
-    "url": "/paleographinator/static/media/roboto-latin-500italic.ffcc050b.woff"
+    "revision": "d8bcbe724fd6f4ba44d0ee6a2675890f",
+    "url": "/paleographinator/static/media/roboto-latin-400italic.d8bcbe72.woff2"
+  },
+  {
+    "revision": "de8b7431b74642e830af4d4f4b513ec9",
+    "url": "/paleographinator/static/media/roboto-latin-500.de8b7431.woff"
   },
   {
     "revision": "510dec37fa69fba39593e01a469ee018",
     "url": "/paleographinator/static/media/roboto-latin-500italic.510dec37.woff2"
   },
   {
+    "revision": "ffcc050b2d92d4b14a4fcb527ee0bcc8",
+    "url": "/paleographinator/static/media/roboto-latin-500italic.ffcc050b.woff"
+  },
+  {
     "revision": "cf6613d1adf490972c557a8e318e0868",
     "url": "/paleographinator/static/media/roboto-latin-700.cf6613d1.woff"
   },
   {
-    "revision": "010c1aeee3c6d1cbb1d5761d80353823",
-    "url": "/paleographinator/static/media/roboto-latin-700italic.010c1aee.woff2"
-  },
-  {
     "revision": "846d1890aee87fde5d8ced8eba360c3a",
     "url": "/paleographinator/static/media/roboto-latin-700italic.846d1890.woff"
+  },
+  {
+    "revision": "010c1aeee3c6d1cbb1d5761d80353823",
+    "url": "/paleographinator/static/media/roboto-latin-700italic.010c1aee.woff2"
   },
   {
     "revision": "8c2ade503b34e31430d6c98aa29a52a3",
@@ -120,7 +120,7 @@ self.__precacheManifest = [
     "url": "/paleographinator/static/css/2.d5cac5df.chunk.css"
   },
   {
-    "revision": "42d25070c70238b9ba0a7cf15db4e89a",
+    "revision": "4d04460af4e35fafeae8c3f4d3401593",
     "url": "/paleographinator/index.html"
   }
 ];
