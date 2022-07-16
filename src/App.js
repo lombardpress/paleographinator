@@ -44,6 +44,8 @@ class App extends Component {
     this.triggerSearch = this.triggerSearch.bind(this)
     this.handleShowSurface = this.handleShowSurface.bind(this)
     this.handleHideSurface = this.handleHideSurface.bind(this)
+    this.handleChangeCodexType = this.handleChangeCodexType.bind(this)
+
     this.state = {
       searchText: "",
       searchCodex: "",
@@ -56,7 +58,8 @@ class App extends Component {
       itemsPerPage: 5,
       institutions: [],
       aboutView: false,
-      afterDate: ""
+      afterDate: "",
+      codexType: ""
 
     }
   }
@@ -77,6 +80,10 @@ class App extends Component {
     const afterDate = event.target.value
     this.setState({afterDate: afterDate, searchInstitution: "", searchCodex: ""});
   };
+  handleChangeCodexType(event){
+    const codexType = event.target.value
+    this.setState({codexType: codexType});
+  }
   triggerSearch(url){
     Axios.get(url)
       .then(({ data })=> {
@@ -129,6 +136,7 @@ class App extends Component {
     let parameters = "?page=1&q=" + this.state.searchText
     if (this.state.searchInstitution){ parameters = parameters + "&institution=" + this.state.searchInstitution}
     if (this.state.searchCodex) { parameters = parameters + "&codex=" + this.state.searchCodex}
+    if (this.state.codexType) { parameters = parameters + "&codexType=" + this.state.codexType}
     if (this.state.afterDate) { parameters = parameters + "&afterDate=" + this.state.afterDate}
     if (this.state.searchSurface) { parameters = parameters + "&searchSurface=" + this.state.searchSurface}
     if (this.state.searchLine) { parameters = parameters + "&searchLine=" + this.state.searchLine}
@@ -306,12 +314,12 @@ class App extends Component {
     }
     const getCodexMenuItems = () => {
       //temp include list to exclude scta codices without corresponding coords data.
-      const includeList = ["penn", "svict", "lon", "reims", "cod-yu78uh", "cod-xowk10", "penn855", "Lyon1518", "vatlat955", "tara", "vat", "pal", "sorb"]
+      //const includeList = ["penn", "svict", "lon", "reims", "cod-yu78uh", "cod-xowk10", "penn855", "Lyon1518", "vatlat955", "tara", "vat", "pal", "sorb"]
       if (this.state.codices){
         const codices = this.state.codices.map((c) => {
-          if (includeList.includes(c.codexShortId)){
+        //  if (includeList.includes(c.codexShortId)){
             return <MenuItem key={c.codexShortId} value={c.codexShortId}>{c.codexTitle}</MenuItem>
-          }
+          //}
         })
         return codices
       }
@@ -331,11 +339,23 @@ class App extends Component {
           <form onSubmit={this.handleSubmit} id="input-form">
 
               <InputLabel htmlFor="queryString">Search Term</InputLabel>
-
               <TextField id="queryString"  onChange={this.handleChange} value={this.state.searchText} placeholder="search for word here"></TextField>
+              <span style={{"padding": "0 5px"}}>|</span>
               <InputLabel htmlFor="queryAfterDate">After Date</InputLabel>
               <TextField id="queryAfterDate"  onChange={this.handleChangeAfterDate} value={this.state.afterDate} placeholder="1500"></TextField>
-
+              <span style={{"padding": "0 5px"}}>|</span>
+              <InputLabel htmlFor="codexType">Codex Type</InputLabel>
+              <Select
+                  value={this.state.codexType}
+                  onChange={this.handleChangeCodexType}
+                  placeholder="codexType"
+                  >
+                    <MenuItem key="blankCodex" value="">Select</MenuItem>
+                    <MenuItem key="manuscript" value="http://scta.info/resource/codexTypeManuscript">Manuscript</MenuItem>
+                    <MenuItem key="book" value="http://scta.info/resource/codexTypeBook">Print</MenuItem>
+                    
+              </Select>
+              <span style={{"padding": "0 5px"}}>|</span>
               <InputLabel htmlFor="codices">Codices</InputLabel>
                 <Select
                   value={this.state.searchCodex}
@@ -351,7 +371,7 @@ class App extends Component {
 
 
                 </Select>
-
+                <span style={{"padding": "0 5px"}}>|</span>
             <InputLabel htmlFor="institutions">Institutions</InputLabel>
               <Select
                 value={this.state.searchInstitution}
@@ -367,7 +387,7 @@ class App extends Component {
               </Select>
 
 
-
+              <span style={{"padding": "0 5px"}}>|</span>
             <Button onClick={this.handleSubmit} type="submit"><Icon color="secondary">send</Icon></Button>
           </form>
           <Button onClick={() => {this.handleToggleAbout()}}>{this.state.aboutView ? <span>Hide About</span> : <span>About</span>}</Button>
